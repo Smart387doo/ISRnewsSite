@@ -2,21 +2,26 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+Copy repository and then in repository root run:
+
+````bash
+npm install
+
+Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-```
+````
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+If you want to search for other results, modify the params q part "q: 'next.js OR nextjs OR javascript !token OR (next.js AND react) OR (nextjs AND react)" to something else, more info how to do that at:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [Advanced Query [q] Parameter](https://docs.newscatcherapi.com/api-docs/endpoints/search-news) - Main endpoint that allows you to find news article by keyword, date, language, country, etc.
 
 ## Learn More
 
