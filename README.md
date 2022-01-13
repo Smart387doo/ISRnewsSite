@@ -19,7 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-If you want to search for other results, modify the params q part "q: 'next.js OR nextjs OR javascript !token OR (next.js AND react) OR (nextjs AND react)" to something else, more info how to do that at:
+If you want to search for other results, modify the params q part "q: 'next.js OR nextjs OR javascript !token OR (next.js AND react) OR (nextjs AND react)" to something else in helper/helperFunctions.jsx, more info how to do that at:
 
 - [Advanced Query [q] Parameter](https://docs.newscatcherapi.com/api-docs/endpoints/search-news) - Main endpoint that allows you to find news article by keyword, date, language, country, etc.
 
