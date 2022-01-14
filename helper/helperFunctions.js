@@ -6,7 +6,7 @@ export async function getNews(params) {
   var options = {
     method: 'GET',
     url: 'https://api.newscatcherapi.com/v2/search',
-    params: { q: 'next.js OR nextjs OR javascript !token OR (next.js AND react) OR (nextjs AND react)', lang: 'en', sort_by: 'relevancy', page: '1' },
+    params: { q: 'next.js OR nextjs OR "next js" OR javascript', lang: 'en', sort_by: 'relevancy', page: '1' },
     headers: {
       'x-api-key': apikey
     }
