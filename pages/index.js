@@ -19,7 +19,7 @@ export const getStaticProps = async () => {
 
   const result = await getNews();
 
-  if (!result || result == []) {
+  if (!result || result === []) {
     return {
       notFound: true,
       revalidate: 1
