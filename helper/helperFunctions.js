@@ -13,7 +13,7 @@ export async function getNews(params) {
 
   const result = await axios.request(options).then(function (response) {
     console.log(response.data);
-    result = response.data.articles;
+    return response.data.articles;
   }).catch(function (error) {
     console.error(error);
   });
