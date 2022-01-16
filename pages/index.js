@@ -2,7 +2,6 @@ import NewsCard from "../components/NewsCard";
 import { getNews } from "../helper/helperFunctions";
 
 export default function Home({ allNews }) {
-  console.log(allNews);
   return (
     <>
       <h1 className="my-24 text-6xl font-semibold text-center underline decoration-rose-700">
@@ -22,7 +21,6 @@ export const getStaticProps = async () => {
   if (!result || result === []) {
     return {
       notFound: true,
-      revalidate: 1
     };
   }
 
