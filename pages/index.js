@@ -21,6 +21,7 @@ export const getStaticProps = async () => {
   if (!result || result === []) {
     return {
       notFound: true,
+      revalidate: 10
     };
   }
 
