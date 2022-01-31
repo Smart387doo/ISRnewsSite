@@ -69,8 +69,7 @@ export async function getKlixNews() {
     response.push({ title, link, media, category });
   });
 
-  // return response.slice(0, 8);
-  return html;
+  return response.slice(0, 8);
 }
 
 export async function getVecernjiListNews() {
@@ -108,4 +107,23 @@ export async function getOslobodjenjeNews() {
   });
 
   return response.slice(0, 8);
+}
+
+export async function getKlixNews1() {
+
+  const url = `https://www.klix.ba/rss`;
+  const html = await fetch_retry(url, 2);
+  let response = [];
+  const $ = cheerio.load(html, { xmlMode: true });
+  $('item').each((i, element) => {
+    const media = $(element).find('media\\:content').attr('url');
+    const link = $(element).find('link').text();
+    const title = $(element).find('title').text();
+    const category = $(element).find('category').text();
+
+    response.push({ title, link, media, category });
+  });
+
+  // return response.slice(0, 8);
+  return html;
 }
