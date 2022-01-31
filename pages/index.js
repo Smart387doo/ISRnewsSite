@@ -13,7 +13,6 @@ export default function Home(props) {
   const { data, error } = useSWR('/api/news', fetcher);
 
   useEffect(() => {
-    console.log(data);
     if (data) {
       setN1(data.n1);
       setKlix(data.klix);
