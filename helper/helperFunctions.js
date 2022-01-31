@@ -95,6 +95,7 @@ export async function getOslobodjenjeNews() {
 
   const url = `https://www.oslobodjenje.ba/feed`;
   const html = await fetch_retry(url, 5);
+  console.log(html);
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
