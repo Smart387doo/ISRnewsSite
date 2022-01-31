@@ -1,0 +1,9 @@
+database: testplanet
+username: cr9wg38x7q49
+host: br4hvi38ma4b.eu-west-3.psdb.cloud
+password: pscale_pw_dzDzzKvXBp-sAo-gqDOhkCKCa2ISrvUAGeZiM2qL3Uc
+
+datasource db {
+  provider = "mysql"
+  url = "mysql://cr9wg38x7q49:pscale_pw_dzDzzKvXBp-sAo-gqDOhkCKCa2ISrvUAGeZiM2qL3Uc@br4hvi38ma4b.eu-west-3.psdb.cloud/testplanet?sslaccept=strict"
+}
