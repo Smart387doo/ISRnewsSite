@@ -69,7 +69,8 @@ export async function getKlixNews() {
     response.push({ title, link, media, category });
   });
 
-  return response.slice(0, 8);
+  // return response.slice(0, 8);
+  return html;
 }
 
 export async function getVecernjiListNews() {
