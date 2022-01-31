@@ -7,7 +7,7 @@ const fetch_retry = async (url, n) => {
       .then(response => response.text())
       .then(data => { return data; });
   } catch (err) {
-    if (n === 1) throw err;
+    if (n === 1) return err;
     return await fetch_retry(url, n - 1);
   }
 };
@@ -57,7 +57,7 @@ export async function getN1News() {
 export async function getKlixNews() {
 
   const url = `https://www.klix.ba/rss`;
-  const html = await fetch_retry(url, 5);
+  const html = await fetch_retry(url, 2);
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
@@ -94,7 +94,7 @@ export async function getVecernjiListNews() {
 export async function getOslobodjenjeNews() {
 
   const url = `https://www.oslobodjenje.ba/feed`;
-  const html = await fetch_retry(url, 5);
+  const html = await fetch_retry(url, 1);
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
