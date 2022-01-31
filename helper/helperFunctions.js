@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetch_retry = async (url, n) => {
   try {
-    return await fetch(url)
+    return await fetch(url, { mode: 'cors' })
       .then(response => response.text())
       .then(data => { return data; });
   } catch (err) {
