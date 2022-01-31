@@ -10,7 +10,7 @@ export default function Home(props) {
   const [vecernji, setVecernji] = useState(props.vecernji);
   const [oslobodjenje, setOslobodjenje] = useState(props.oslobodjenje);
 
-  const { data, error } = useSWR('/api/news', fetcher, { refreshInterval: 10000 });
+  const { data, error } = useSWR('/api/news', fetcher);
 
   useEffect(() => {
     console.log(data);
