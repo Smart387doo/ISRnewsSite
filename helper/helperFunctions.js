@@ -1,12 +1,14 @@
 import cheerio from 'cheerio';
 import axios from 'axios';
 
-const fetch_retry = async (url, options, n) => {
+const fetch_retry = async (url, n) => {
   try {
-    return await fetch(url, options);
+    return await fetch(url)
+      .then(response => response.text())
+      .then(data => { return data; });
   } catch (err) {
     if (n === 1) throw err;
-    return await fetch_retry(url, options, n - 1);
+    return await fetch_retry(url, n - 1);
   }
 };
 
@@ -37,7 +39,7 @@ const fetchNews = async (url) => await fetch(url)
 export async function getN1News() {
 
   const url = `https://ba.n1info.com/feed/`;
-  const html = await fetchNews(url);
+  const html = await fetch_retry(url, 5);
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
@@ -55,7 +57,7 @@ export async function getN1News() {
 export async function getKlixNews() {
 
   const url = `https://www.klix.ba/rss`;
-  const html = await fetchNews(url);
+  const html = await fetch_retry(url, 5);
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
@@ -73,7 +75,7 @@ export async function getKlixNews() {
 export async function getVecernjiListNews() {
 
   const url = `https://www.vecernji.ba/feeds/latest`;
-  const html = await fetchNews(url);
+  const html = await fetch_retry(url, 5);
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
@@ -92,7 +94,7 @@ export async function getVecernjiListNews() {
 export async function getOslobodjenjeNews() {
 
   const url = `https://www.oslobodjenje.ba/feed`;
-  const html = await fetchNews(url);
+  const html = await fetch_retry(url, 5);
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
