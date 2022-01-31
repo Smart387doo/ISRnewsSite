@@ -3,24 +3,24 @@ import useSWR from "swr";
 import NewsCard from "../components/NewsCard";
 import { getKlixNews, getN1News, getNews, getOslobodjenjeNews, getVecernjiListNews } from "../helper/helperFunctions";
 
-const fetcher = (...args) => fetch(...args).then(res => res.json());
+// const fetcher = (...args) => fetch(...args).then(res => res.json());
 export default function Home(props) {
   const [n1, setN1] = useState(props.n1);
   const [klix, setKlix] = useState(props.klix);
   const [vecernji, setVecernji] = useState(props.vecernji);
   const [oslobodjenje, setOslobodjenje] = useState(props.oslobodjenje);
 
-  const { data, error } = useSWR('/api/news', fetcher);
+  // const { data, error } = useSWR('/api/news', fetcher);
 
-  useEffect(() => {
-    if (data) {
-      setN1(data.n1);
-      setKlix(data.klix);
-      setOslobodjenje(data.oslobodjenje);
-      setVecernji(data.vecernji);
-    }
+  // useEffect(() => {
+  //   if (data) {
+  //     setN1(data.n1);
+  //     setKlix(data.klix);
+  //     setOslobodjenje(data.oslobodjenje);
+  //     setVecernji(data.vecernji);
+  //   }
 
-  }, [data]);
+  // }, [data]);
 
 
   return (
