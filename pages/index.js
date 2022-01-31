@@ -16,7 +16,8 @@ export default function Home(props) {
     console.log(data);
     if (data) {
       setN1(data.n1);
-      setKlix(data.klix);
+      const klixpodaci = getKlixNews();
+      setKlix(klixpodaci);
       setOslobodjenje(data.oslobodjenje);
       setVecernji(data.vecernji);
     }
