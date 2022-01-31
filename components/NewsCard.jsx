@@ -7,7 +7,7 @@ const NewsCard = ({ news }) => {
         <div className="relative h-full mb-8 shadow-lg group">
           <div className="relative w-full px-2 overflow-hidden bg-white rounded-lg group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 lg:aspect-w-1 lg:aspect-h-1">
             <Image
-              src={`/api/imageproxy?url=${encodeURIComponent(news.media)}`}
+              src={news.media}
               width={600}
               height={400}
               alt={news.title}
