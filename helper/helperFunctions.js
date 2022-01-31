@@ -3,7 +3,9 @@ import axios from 'axios';
 
 const fetch_retry = async (url, n) => {
   try {
-    return await fetch(url, { mode: 'cors' })
+    return await fetch(url, {
+      credentials: "same-origin"
+    })
       .then(response => response.text())
       .then(data => { return data; });
   } catch (err) {
@@ -57,7 +59,7 @@ export async function getN1News() {
 export async function getKlixNews() {
 
   const url = `https://www.klix.ba/rss`;
-  const html = await fetch_retry(url, 2);
+  const html = await fetch_retry(url, 5);
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
