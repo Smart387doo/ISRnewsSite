@@ -1,6 +1,6 @@
 import cheerio from 'cheerio';
 import axios from 'axios';
-import cloudflareScraper from 'cloudflare-scraper';
+
 
 
 const fetch_retry = async (url, n) => {
@@ -111,42 +111,5 @@ export async function getOslobodjenjeNews() {
     response.push({ title, link, media, category });
   });
 
-  return response.slice(0, 8);
-}
-
-export async function getOslobodjenjeNews1() {
-
-  const url = `https://www.oslobodjenje.ba/feed`;
-  const html = await cloudflareScraper.get(url);
-  let response = [];
-  const $ = cheerio.load(html, { xmlMode: true });
-  $('item').each((i, element) => {
-    const media = $(element).find('enclosure').attr('url');
-    const link = $(element).find('link').text();
-    const title = $(element).find('title').text();
-    const category = $(element).find('category').text();
-
-    response.push({ title, link, media, category });
-  });
-
-  return response.slice(0, 8);
-}
-
-export async function getKlixNews1() {
-
-  const url = `https://www.klix.ba/rss`;
-  const html = await cloudflareScraper.get(url);
-  let response = [];
-  const $ = cheerio.load(html, { xmlMode: true });
-  $('item').each((i, element) => {
-    const media = $(element).find('media\\:content').attr('url');
-    const link = $(element).find('link').text();
-    const title = $(element).find('title').text();
-    const category = $(element).find('category').text();
-
-    response.push({ title, link, media, category });
-  });
-
-  // return response.slice(0, 8);
   return response.slice(0, 8);
 }
