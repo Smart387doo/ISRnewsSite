@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
 import NewsCard from "../components/NewsCard";
-import { getKlixNews, getN1News, getNews, getOslobodjenjeNews, getVecernjiListNews } from "../helper/helperFunctions";
+import { getKlixNews1, getN1News, getOslobodjenjeNews1, getVecernjiListNews } from "../helper/helperFunctions";
 
 // const fetcher = (...args) => fetch(...args).then(res => res.json());
 export default function Home(props) {
@@ -60,9 +60,9 @@ export const getStaticProps = async () => {
 
   // const result = await getNews();
   const n1News = await getN1News();
-  const klixNews = await getKlixNews();
+  const klixNews = await getKlixNews1();
   const vecernjiNews = await getVecernjiListNews();
-  const oslobodjenjeNews = await getOslobodjenjeNews();
+  const oslobodjenjeNews = await getOslobodjenjeNews1();
 
   // if (!result || result === []) {
   //   return {
