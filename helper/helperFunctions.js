@@ -1,10 +1,13 @@
 import cheerio from 'cheerio';
 import axios from 'axios';
+import cloudflareBypasser from 'cloudflare-bypasser';
 
+let cf = new cloudflareBypasser();
 const fetch_retry = async (url, n) => {
   try {
     return await fetch(url, {
-      credentials: "same-origin"
+      credentials: "same-origin",
+      mode: 'cors'
     })
       .then(response => response.text())
       .then(data => { return data; });
@@ -56,23 +59,23 @@ export async function getN1News() {
   return response.slice(0, 8);
 }
 
-export async function getKlixNews() {
+// export async function getKlixNews() {
 
-  const url = `https://www.klix.ba/rss`;
-  const html = await fetch_retry(url, 5);
-  let response = [];
-  const $ = cheerio.load(html, { xmlMode: true });
-  $('item').each((i, element) => {
-    const media = $(element).find('media\\:content').attr('url');
-    const link = $(element).find('link').text();
-    const title = $(element).find('title').text();
-    const category = $(element).find('category').text();
+//   const url = `https://www.klix.ba/rss`;
+//   const html = await fetch_retry(url, 5);
+//   let response = [];
+//   const $ = cheerio.load(html, { xmlMode: true });
+//   $('item').each((i, element) => {
+//     const media = $(element).find('media\\:content').attr('url');
+//     const link = $(element).find('link').text();
+//     const title = $(element).find('title').text();
+//     const category = $(element).find('category').text();
 
-    response.push({ title, link, media, category });
-  });
+//     response.push({ title, link, media, category });
+//   });
 
-  return response.slice(0, 8);
-}
+//   return response.slice(0, 8);
+// }
 
 export async function getVecernjiListNews() {
 
@@ -96,7 +99,8 @@ export async function getVecernjiListNews() {
 export async function getOslobodjenjeNews() {
 
   const url = `https://www.oslobodjenje.ba/feed`;
-  const html = await fetch_retry(url, 1);
+  const html = await cf.request(url)
+    .then(res => { return res.body; });
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
@@ -111,10 +115,12 @@ export async function getOslobodjenjeNews() {
   return response.slice(0, 8);
 }
 
-export async function getKlixNews1() {
+export async function getKlixNews() {
 
   const url = `https://www.klix.ba/rss`;
-  const html = await fetch_retry(url, 2);
+  const html = await cf.request(url)
+    .then(res => { return res.body; });
+
   let response = [];
   const $ = cheerio.load(html, { xmlMode: true });
   $('item').each((i, element) => {
@@ -127,5 +133,5 @@ export async function getKlixNews1() {
   });
 
   // return response.slice(0, 8);
-  return html;
+  return response.slice[0, 8];
 }
