@@ -10,17 +10,17 @@ export default function Home(props) {
   const [vecernji, setVecernji] = useState(props.vecernji);
   const [oslobodjenje, setOslobodjenje] = useState(props.oslobodjenje);
 
-  // const { data, error } = useSWR('/api/news', fetcher);
+  const { data, error } = useSWR('/api/news', fetcher);
 
-  // useEffect(() => {
-  //   if (data) {
-  //     setN1(data.n1);
-  //     setKlix(data.klix);
-  //     setOslobodjenje(data.oslobodjenje);
-  //     setVecernji(data.vecernji);
-  //   }
+  useEffect(() => {
+    if (data) {
+      setN1(data.n1);
+      setKlix(data.klix);
+      setOslobodjenje(data.oslobodjenje);
+      setVecernji(data.vecernji);
+    }
 
-  // }, [data]);
+  }, [data]);
 
 
   return (

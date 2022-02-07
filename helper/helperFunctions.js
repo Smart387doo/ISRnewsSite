@@ -113,3 +113,5 @@ export async function getOslobodjenjeNews() {
 
   return response.slice(0, 8);
 }
+
+// info.ba endpoint za novosti https://index.ba/wp-json/wp/v2/posts
