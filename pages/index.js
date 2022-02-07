@@ -3,7 +3,7 @@ import useSWR from "swr";
 import NewsCard from "../components/NewsCard";
 import { getKlixNews, getN1News, getOslobodjenjeNews, getVecernjiListNews } from "../helper/helperFunctions";
 
-// const fetcher = (...args) => fetch(...args).then(res => res.json());
+const fetcher = (...args) => fetch(...args).then(res => res.json());
 export default function Home(props) {
   const [n1, setN1] = useState(props.n1);
   const [klix, setKlix] = useState(props.klix);
