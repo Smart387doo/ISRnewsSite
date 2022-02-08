@@ -18,7 +18,7 @@ const fetch_retry = async (url, n) => {
 };
 
 const fetchNews = async (url) => await fetch(url)
-  .then(response => response.text())
+  .then(response => response.json())
   .then(data => { return data; })
   .catch(error => console.log(error));
 
@@ -56,7 +56,7 @@ export async function getN1News() {
     response.push({ title, link, media, category });
   });
 
-  return response.slice(0, 8);
+  return response.slice(0, 10);
 }
 
 export async function getKlixNews() {
@@ -74,7 +74,7 @@ export async function getKlixNews() {
     response.push({ title, link, media, category });
   });
 
-  return response.slice(0, 8);
+  return response.slice(0, 10);
 }
 
 export async function getVecernjiListNews() {
@@ -92,7 +92,7 @@ export async function getVecernjiListNews() {
     response.push({ title, link, media });
   });
 
-  return response.slice(0, 8);
+  return response.slice(0, 10);
 }
 
 
@@ -111,7 +111,21 @@ export async function getOslobodjenjeNews() {
     response.push({ title, link, media, category });
   });
 
-  return response.slice(0, 8);
+  return response.slice(0, 10);
+}
+
+export async function getIndexBa() {
+  const url = 'https://index.ba/wp-json/wp/v2/posts';
+  const response = await fetchNews(url);
+  // const result = response.json();
+  let result = [];
+  response.map(post => {
+    const media = post.yoast_head_json.og_image[0].url;
+    const link = post.link;
+    const title = post.title.rendered;
+    result.push({ title, link, media });
+  });
+  return result.slice(0, 10);
 }
 
 // info.ba endpoint za novosti https://index.ba/wp-json/wp/v2/posts
