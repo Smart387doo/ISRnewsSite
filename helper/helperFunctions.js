@@ -80,12 +80,13 @@ export async function getKlix() {
 
       result.push({ title, link, media });
     });
+    return result.slice(0, 10);
   } catch (error) {
     console.log(error);
     return error.response;
   }
 
-  return result.slice(0, 10);
+
 }
 
 
