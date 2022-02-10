@@ -41,6 +41,51 @@ const fetchNews = async (url) => await fetch(url)
 //   return response;
 // }
 
+export async function getAvaz() {
+
+  let url = 'https://avaz.ba/najnovije';
+  let result = [];
+
+  const html = await fetch_retry(url, 3);
+
+  const $ = cheerio.load(html);
+  $('.top-article-four').each((i, element) => {
+    const media = `https://avaz.ba${$(element).find('img').first().attr('src')}`;
+    const link = $(element).find('a').first().attr('href');
+    const title = $(element).find('.category-list-link').text();
+    // const category = $(element).find('.markica').text();
+
+    result.push({ title, link, media });
+
+
+  });
+  return result.slice(0, 10);
+}
+
+export async function getKlix() {
+
+  let url = 'https://www.klix.ba/vijesti';
+  let result = [];
+
+  const html = await fetch_retry(url, 3);
+  const $ = cheerio.load(html);
+  $('article.relative').each((i, element) => {
+    let media = $(element).find('img').first().attr('src');
+    if (media.includes('data:image')) {
+      media = $(element).find('img').first().attr('data-srcset');
+    }
+    const link = `https://avaz.ba${$(element).find('a').first().attr('href')}`;
+    const title = $(element).find('a').first().attr('title');
+    // const category = $(element).find('.markica').text();
+
+    result.push({ title, link, media });
+
+
+  });
+  return result.slice(0, 10);
+}
+
+
 export async function getN1News() {
 
   const url = `https://ba.n1info.com/feed/`;
