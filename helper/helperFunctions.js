@@ -66,22 +66,25 @@ export async function getKlix() {
 
   let url = 'https://www.klix.ba/vijesti';
   let result = [];
+  try {
+    const html = await fetch_retry(url, 3);
+    const $ = cheerio.load(html);
+    $('article.relative').each((i, element) => {
+      let media = $(element).find('img').first().attr('src');
+      if (media.includes('data:image')) {
+        media = $(element).find('img').first().attr('data-srcset');
+      }
+      const link = `https://avaz.ba${$(element).find('a').first().attr('href')}`;
+      const title = $(element).find('a').first().attr('title');
+      // const category = $(element).find('.markica').text();
 
-  const html = await fetch_retry(url, 3);
-  const $ = cheerio.load(html);
-  $('article.relative').each((i, element) => {
-    let media = $(element).find('img').first().attr('src');
-    if (media.includes('data:image')) {
-      media = $(element).find('img').first().attr('data-srcset');
-    }
-    const link = `https://avaz.ba${$(element).find('a').first().attr('href')}`;
-    const title = $(element).find('a').first().attr('title');
-    // const category = $(element).find('.markica').text();
+      result.push({ title, link, media });
+    });
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
 
-    result.push({ title, link, media });
-
-
-  });
   return result.slice(0, 10);
 }
 
