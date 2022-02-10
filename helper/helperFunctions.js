@@ -1,13 +1,14 @@
 import cheerio from 'cheerio';
 import axios from 'axios';
-
+import { wrapper } from 'axios-cookiejar-support';
+import { CookieJar } from 'tough-cookie';
 
 
 const fetch_retry = async (url, n) => {
   try {
     return await fetch(url, {
+      method: 'GET',
       credentials: 'include',
-      mode: 'cors'
     })
       .then(response => response.text())
       .then(data => { return data; });
@@ -68,6 +69,23 @@ export async function getKlix() {
   let result = [];
   try {
     const html = await fetch_retry(url, 3);
+    // const jar = new CookieJar();
+    // const axiosInstance = wrapper(axios.create({
+    //   // baseURL: 'https://klix.ba/',
+    //   // Accept: 'text/ html, application / xhtml + xml, application / xml; q = 0.9, image / webp, image / apng,*;/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    //   // 'Accept-Encoding': 'gzip, deflate, br',
+    //   // Connection: 'keep-alive',
+    //   // Host: 'klix.ba',
+    //   // withCredentials: true,
+    //   jar
+    // }));
+    // axiosInstance.defaults.xsrfHeaderName = "X-CSRFToken";
+    // axiosInstance.defaults.xsrfCookieName = 'csrftoken';
+
+    // const html = await axiosInstance.get(url, {}).then(response => { return response; });
+
+    // console.log(html);
+
     const $ = cheerio.load(html);
     $('article.relative').each((i, element) => {
       let media = $(element).find('img').first().attr('src');
