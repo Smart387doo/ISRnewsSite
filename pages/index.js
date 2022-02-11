@@ -40,12 +40,12 @@ export default function Home(props) {
         {n1.map(news => <NewsCard key={news.title} news={news} />)}
       </div>
 
-      <h1 className="p-4 my-4 text-3xl font-semibold text-center underline rounded-md shadow bg-slate-100 decoration-rose-700">
+      {/* <h1 className="p-4 my-4 text-3xl font-semibold text-center underline rounded-md shadow bg-slate-100 decoration-rose-700">
         Klix
       </h1>
       <div className="grid mt-6 space-y-12 lg:space-y-0 lg:grid-cols-5 lg:gap-6 md:grid-cols-2">
         {klix.map(news => <NewsCard key={news.title} news={news} />)}
-      </div>
+      </div> */}
 
       <h1 className="p-4 my-4 text-3xl font-semibold text-center underline rounded-md shadow bg-slate-100 decoration-rose-700">
         Večernji list
