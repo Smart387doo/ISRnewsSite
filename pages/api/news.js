@@ -1,4 +1,4 @@
-import { getIndexBa, getKlix, getN1News, getOslobodjenjeNews, getVecernjiListNews, getAvaz } from "../../helper/helperFunctions";
+import { getNews, getIndexBa, getKlix, getN1News, getOslobodjenjeNews, getVecernjiListNews, getAvaz } from "../../helper/helperFunctions";
 export default async function handler(req, res) {
   const n1News = await getN1News();
   const klixNews = await getKlix();
@@ -6,5 +6,6 @@ export default async function handler(req, res) {
   const oslobodjenjeNews = await getOslobodjenjeNews();
   const indexBa = await getIndexBa();
   const avaz = await getAvaz();
-  res.status(200).json({ n1: n1News, klix: klixNews, vecernji: vecernjiNews, oslobodjenje: oslobodjenjeNews, indexBa, avaz: avaz });
+  const newz = await getNews();
+  res.status(200).json({ n1: n1News, klix: klixNews, vecernji: vecernjiNews, oslobodjenje: oslobodjenjeNews, indexBa, avaz: avaz, newz: newz });
 }
