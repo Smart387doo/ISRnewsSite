@@ -80,7 +80,7 @@ export async function getKlix() {
 
     // const html = await axiosInstance.get(url, {}).then(response => { return response; });
 
-    // console.log(html);
+    // console.log( html );
 
     const $ = cheerio.load( html );
     $( 'article.relative' ).each( ( i, element ) => {
@@ -89,8 +89,9 @@ export async function getKlix() {
         media = $( element ).find( 'img' ).first().attr( 'data-srcset' );
       }
       const link = `https://avaz.ba${$( element ).find( 'a' ).first().attr( 'href' )}`;
-      const title = $( element ).find( 'a' ).first().attr( 'title' );
+      const title = $( element ).find( 'h2' ).text();
       // const category = $(element).find('.markica').text();
+      console.log( title );
 
       result.push( { title, link, media } );
     } );
